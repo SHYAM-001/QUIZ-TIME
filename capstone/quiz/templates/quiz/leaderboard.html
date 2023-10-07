@@ -1,0 +1,88 @@
+{% extends "quiz/layout.html" %}
+{% load static %}
+{% block body %}
+<style>
+    body {
+        background-image: url('https://img.freepik.com/free-photo/colombian-national-soccer-team-concept-still-life_23-2150257157.jpg?w=996&t=st=1696497277~exp=1696497877~hmac=563e2efce249d6b566d70bfbe22de2150e9f02f6957e57f9e3d5f98ca5285dcd');
+        background-size: cover;
+        font-family: Arial, sans-serif;
+         background-color: #f8f8f8;
+         }
+    .leaderboard {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+  
+    .leaderboard h1 {
+      text-align: center;
+      color: #333;
+    }
+  
+    .leaderboard ol {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .leaderboard li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }
+  
+    .leaderboard li.highlighted {
+      background-color: #ffd700;
+      font-weight: bold;
+    }
+  
+    .leaderboard .badge {
+      font-size: 20px;
+      margin-right: 10px;
+      background-color: #007bff;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 50%;
+    }
+  
+    .leaderboard .username {
+      flex-grow: 1;
+      font-size: 18px;
+      color: #333;
+    }
+  
+    .leaderboard .score {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .box-shadow{
+      box-shadow:0 0 5px #3A28A7;
+  }
+  </style>
+
+    <div class="leaderboard mt-5">
+      <h1>Quiz Leaderboard</h1>
+      <ol>
+        {% for user_q, image_url in user_quiz_images %}
+        <li {% if forloop.counter <= 3 %}class="highlighted box-shadow"{% endif %}>
+          <span class="badge">{{ forloop.counter }} </span>
+          <img src="{{ image_url }}" alt="profile Image" style="width:40px;height:40px;border-radius:40px;margin-right:1rem;border:3px solid black;">
+          <span class="username">{{ user_q.user.username }}</span>
+          <span class="score">{{ user_q.score }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+      <div class="bg-light mt-3"> 
+        <a class="btn btn-primary" href="{% url 'index' %}">Home</a>
+      </div>
+    </div>
+    
+
+{% endblock %}

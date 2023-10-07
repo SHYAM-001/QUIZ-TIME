@@ -1,0 +1,38 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+<style>
+    body{
+        background-color:#6049eb;
+    }
+</style>
+
+<div class="columns d-flex justify-content-center m-5" style="display:flex;flex-direction:column;justify-content:center;">
+    {% if error_message %}
+        <div class="alert alert-danger" style="text-align:center;" role="alert">
+        {{ error_message }}
+        </div>
+    {% endif %}
+    <h1 class="text-light d-flex justify-content-center">Quiz Time</h1>
+    <br>
+    <br>
+    <h5 class="text-light d-flex justify-content-center">Enter code to join Quiz</h5>
+    <br>
+    {% if user.is_authenticated %}
+    <form action="{% url 'play' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3 d-flex justify-content-center">
+        <input type="number" placeholder="Quiz Code" name="code" class="rounded form-control" style="width:10rem;text-align:center;" required>
+        </div>
+        <div class="mb-3 d-flex justify-content-center">
+        <input type="submit" value="Join" class="btn btn-success">
+        </div>
+    </form>
+    {% else %}
+        <div class="column mb-3 d-flex justify-content-center">
+            <h2>Please! Login to Continue</h2>
+            <a href="{% url 'login' %}" class="btn btn-success ms-3">Login</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

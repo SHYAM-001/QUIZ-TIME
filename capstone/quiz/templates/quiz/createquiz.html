@@ -1,0 +1,108 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+<style>
+    body {
+        background-image: url('https://img.99ppt.com/pic/a9b72df6-9f85-4160-906b-af8237a5c89e.png');
+        background-size: cover;
+    }
+    .box-shadow{
+        box-shadow:0 0 10px #3A28A7;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .small-card {
+        flex: 0 0 30%;
+        margin-bottom: 1rem;
+    }
+
+    .large-card {
+        flex: 0 0 70%; 
+        margin-bottom: 1rem;
+    }
+    .spa{
+        margin-top:1.5rem;
+        margin-left:-5.6rem;
+    }
+</style>
+<div class="row p-3 mx-auto ms-5 p-5 card-container">
+    <div class="card small-card" style="margin:0;border:none;padding:0;">
+        <div class="p-2 m-2">
+            <h4 class="text-center" style="color:#6049eb;">SETTINGS</h4>
+        </div>
+    <div class="rounded shadow w-100 p-3" style="background-color:#6049eb;">
+        <div style="display:flex;flex-direction:row;justify-content:flex-start;gap:2rem;">
+        <i class="text-light ms-3 justify-content-middle bi bi-pencil" style="font-size:2rem;"></i>
+        <h5 class="card-text mt-1 text-light">WHAT</h5>
+        <span class="spa" style="color:lightgrey;">Add quiz name, cover, description</span>
+        </div>  
+    </div>   
+    </div>
+
+    <div class="card large-card">
+        <div class="card-body">
+            <form action="{% url 'create_quiz' %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Quiz name:</label>
+                    <textarea class="form-control" name="quiz_title" id="exampleFormControlInput1" maxlength="150" rows="2" maxlength="100" required></textarea>
+                    <span id="wordCount" style="position: absolute; top: 0; right: 0;"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Quiz description:</label>
+                    <textarea id="myTextarea" name="quiz_description" class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="800"></textarea>
+                    <span id="wordCountDesc"></span>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button id="cancel" class="btn btn-outline-success">Cancel</button>
+                    <input id="next" type="submit" class="btn btn-success ms-3" value="Next">
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.tiny.cloud/1/r9eyf8fa16r0ozszql1futp4hkuj3jm9am3qgwvxt9puad6g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: '#myTextarea',  // Apply to all textareas
+        plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    });
+</script>
+<script>
+    const quizNameTextarea = document.getElementById('exampleFormControlInput1');
+    const quizDescTextarea = document.getElementById('exampleFormControlTextarea1');
+    const charCount = document.getElementById('wordCount');
+    const charCountDesc = document.getElementById('wordCountDesc');
+    const cancel = document.getElementById('cancel');
+    const next = document.getElementById('next');
+
+    cancel.addEventListener('click',function(event){
+        event.preventDefault();
+        window.location.href = "{% url 'index' %}";
+    });
+
+    quizNameTextarea.addEventListener('input', function() {
+        const characters = this.value.length;
+        charCount.innerText = `${characters}/100`;
+        if (characters >= 150) {
+            this.value = this.value.substring(0, 150);
+        }
+    });
+
+    quizDescTextarea.addEventListener('input', function() {
+        const characters = this.value.length;
+        charCountDesc.innerText = `${characters}/100`;
+        if (characters >= 800) {
+            this.value = this.value.substring(0, 800);
+        }
+    });
+</script>
+{% endblock %}

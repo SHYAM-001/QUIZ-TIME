@@ -1,0 +1,65 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+<style>
+  body {
+    background-image: linear-gradient(to bottom, #3A28A7, #ffffff);
+  }
+  .quote-container {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quote {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .author {
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+    margin-left:10rem;
+  }
+</style>
+  <section class="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="hero-content mt-3">
+            <h1>Organize Live Multiplayer Trivia Quiz for Your Event!</h1>
+            <h2>"Embrace the challenge,<br> 
+              Test your knowledge,<br>
+              Enjoy the journey."</h2>
+           <h3 class="author">- Shyam</h3>               
+            <a href="{% url 'play' %}" class="btn btn-success">Join Quiz</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'create_quiz' %}" class="btn btn-warning">Create Quiz</a>
+            {% endif %}
+          </div>
+        </div>
+  </section>
+
+  <section class="wave-bg">
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+  </section>
+{% endblock %}

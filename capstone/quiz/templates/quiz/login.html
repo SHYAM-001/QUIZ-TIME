@@ -1,0 +1,60 @@
+{% extends "quiz/layout.html" %}
+{% load socialaccount %}
+{% providers_media_js %} 
+
+{% block body %}
+<style>
+    body{
+        background-image:url('https://wallpapercave.com/wp/wp9764093.jpg');
+        background-size:cover;
+    }
+</style>
+<div class="cols">
+    <h2 class="d-flex justify-content-center text-light" style="margin-top:2rem;">Sign In to Quiz Time</h2>
+    <p class="d-flex justify-content-center text-light">Enter your Username and Password below</p>
+
+    <div class="container mx-auto">
+        <div class="card mx-auto col-md-6 p-4">
+            <h5 class="card-header bg-primary text-white">Login</h5>
+            <div class="card-body">
+                {% if message %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                    {{ message }}
+                    </div>
+                {% endif %}
+              <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+            
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                  </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Password</span>
+                    <input type="password" class="form-control" name="password" id="basic-url" placeholder="Password" arial-label="Password" aria-describedby="basic-addon1">
+                  </div>
+                <div class="input-group d-flex justify-content-center mb-3">
+                    <input type="submit" value="Login" class="btn btn-primary w-100">
+                </div>
+                <p class="card-text d-flex justify-content-center text-center mb-3">Or Sign in With</p>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <button class="btn btn-primary btn-block">
+                            <a href="{% provider_login_url "facebook" method="oauth2" %}" class="text-white">Facebook Login</a>
+                        </button>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <button class="btn btn-danger btn-block">
+                            <a href="{% provider_login_url "google" %}" class="text-white">Google Login</a>
+                        </button>
+                    </div>
+                </div> 
+                <p class="card-text d-flex justify-content-center text-center mb-3">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            </form>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+{% endblock %}

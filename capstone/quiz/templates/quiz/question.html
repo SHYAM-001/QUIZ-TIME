@@ -1,0 +1,140 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<style>
+    body {
+        background-image: url('https://img.99ppt.com/pic/a9b72df6-9f85-4160-906b-af8237a5c89e.png');
+        background-size: cover;
+    }
+    .box-shadow{
+        box-shadow:0 0 10px #3A28A7;
+    }
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .small-card {
+        flex: 0 0 30%;
+        margin-bottom: 1rem;
+    }
+
+    .large-card {
+        flex: 0 0 70%; 
+        margin-bottom: 1rem;
+    }
+    .spa{
+        margin-top:1.5rem;
+        margin-left:-5.6rem;
+    }
+</style>
+<div class="row p-3 mx-auto ms-5 p-5 card-container">
+    <div class="card small-card" style="margin:0;border:none;padding:0;">
+        <div class="p-2 m-2">
+            <h4 class="card-title text-center" style="color:#6049eb;">Question</h4>
+        </div>
+    <div class="rounded shadow w-100 p-3" style="background-color:#6049eb;">
+        <div style="display:flex;flex-direction:row;justify-content:flex-start;gap:2rem;">
+        <i class="text-light ms-3 justify-content-middle bi bi-question-circle" style="font-size:2rem;"></i>
+        <p id="typedContent" class="card-text mt-1 text-light"></p>
+        </div>  
+    </div>   
+    </div>
+
+    <div class="card large-card">
+        <div class="card-body">
+            <form action="{% url 'question' quiz_id=quiz.id %}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Text:</label>
+                    <textarea class="form-control" name="quiz_questions" id="exampleFormControlInput1" maxlength="300" rows="5" required></textarea>
+                    <span id="wordCount" style="position: absolute; top: 0; right: 0;"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Answers:</label>
+                
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="checkbox" name="correct_answer1" value=1>
+                        </div>
+                        <span class="input-group-text" style="color:grey;">A</span>
+                        <input type="text" name="choice_1" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="checkbox" name="correct_answer2" value='1'>
+                        </div>
+                        <span class="input-group-text" style="color:grey;">B</span>
+                        <input type="text" name="choice_2" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="checkbox" name="correct_answer3" value='1'>
+                        </div>
+                        <span class="input-group-text" style="color:grey;">C</span>
+                        <input type="text" name="choice_3"  class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                
+                    <div class="input-group mb-3">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="checkbox" name="correct_answer4" value='1'>
+                        </div>
+                        <span class="input-group-text" style="color:grey;">D</span>
+                        <input type="text"  name="choice_4" class="form-control" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="ps-3" style="display:flex;flex-direction:row;justify-content:space-evenly;">
+                <div class="d-flex justify-content-center">
+                    <div class="mb-3 justify-content-center">
+                        <button id="finish" class="btn btn-primary">Finish</button>
+                    </div>
+                </div>
+                  <div class="d-flex" style="justify-content:flex-end;">
+                    <div class="mb-3">
+                    <button id="cancel" class="btn btn-outline-success">Cancel</button>
+                    <button type="submit" class="btn btn-success ms-3">Save</button>    
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const textarea = document.getElementById('exampleFormControlInput1');
+    const charCount = document.getElementById('wordCount');
+    const typedContent = document.getElementById('typedContent');
+    const cancel = document.getElementById('cancel');
+    const finish = document.getElementById('finish');
+
+    cancel.addEventListener('click',function(event){
+        event.preventDefault();
+        window.location.href = "{% url 'create_quiz' %}";
+    });
+
+    finish.addEventListener('click',function(event){
+        event.preventDefault();
+        window.location.href = "{% url 'index' %}"
+    })
+    textarea.addEventListener('input', function() {
+        const characters = this.value.length;
+        charCount.innerText = `${characters}/300`;
+        typedContent.innerText = this.value; // Update the typed content in real-time
+        if (characters >= 300) {
+            this.value = this.value.substring(0, 300);
+        }
+    });
+    
+</script>
+{% else %}
+<div class="container rounded box-shadow bg-white mx-auto mt-5 m-5">
+    <h1 class="mt=3 p-3">Login to continue.</h1>
+    <a href="{% url 'login' %}" class="btn btn-success" style="margin-left:1rem;margin-top:-1rem;">Login</a>
+</div>
+{% endif %}
+{% endblock %}
