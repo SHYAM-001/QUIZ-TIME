@@ -1,6 +1,5 @@
 # Hi, I'm Shyam K S! 👋
 
-
 # Quiz Time
 
 QuizMaster is a dynamic web application built on Django, designed to provide users with an engaging quiz-taking experience. Whether you're a trivia enthusiast or looking to test your knowledge in a specific domain, QuizMaster has something for everyone.
@@ -18,6 +17,21 @@ QuizMaster is a dynamic web application built on Django, designed to provide use
 
 - Responsive Design: Enjoy the same great experience on both desktop and mobile devices.
 
+# ScreenShots 
+- Home page:
+![image](https://github.com/SHYAM-001/QUIZ-TIME/assets/103324177/700766fd-177f-45d4-a579-8d2c649bec3b)
+
+- Quiz Play
+![image](https://github.com/SHYAM-001/QUIZ-TIME/assets/103324177/aa8d86db-95c6-4e95-8bf5-7e865f114420)
+
+- Quiz Creation
+  ![image](https://github.com/SHYAM-001/QUIZ-TIME/assets/103324177/684a51ea-3a19-453c-a87b-5a2681cbfa53)
+
+- My Quizz (Dashboard)
+  ![image](https://github.com/SHYAM-001/QUIZ-TIME/assets/103324177/389c92d2-5a1d-4282-870c-2358d6df2fb0)
+  
+- User Profile
+  ![image](https://github.com/SHYAM-001/QUIZ-TIME/assets/103324177/b719bdae-4acf-43ee-94ac-0b8515eb979f)
 
 ## Installation
 
