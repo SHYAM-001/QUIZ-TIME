@@ -86,26 +86,6 @@ TEMPLATES = [
 
 
 
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '713614996516-pk9lml3r4k7hfgon6jkn48sql1k9243b.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        },
-    },
-    'facebook':{
-        'APP':{
-            'client_id':'276533345207410',
-            'secret':'229b90fc46fd1a7becfc65fc56d4a933',
-            'key':'',
-        }
-    }
-    # ...
-}
-
-
 WSGI_APPLICATION = 'capstone.wsgi.application'
 
 
