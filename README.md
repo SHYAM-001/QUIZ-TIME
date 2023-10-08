@@ -1,4 +1,3 @@
-
 # Hi, I'm Shyam K S! 👋
 
 
@@ -6,7 +5,18 @@
 
 QuizMaster is a dynamic web application built on Django, designed to provide users with an engaging quiz-taking experience. Whether you're a trivia enthusiast or looking to test your knowledge in a specific domain, QuizMaster has something for everyone.
 
+# Key Features:
+- User Authentication: Create a personalized account to track your quiz progress and scores.
 
+- Quiz Categories: Choose from a diverse range of categories spanning sports, science, pop culture, and more.
+
+- Leaderboard: Compete with other users and see where you stand in the global rankings.
+
+- Profile Customization: Personalize your profile with a unique avatar and background image.
+
+- Interactive UI: Intuitive and user-friendly interface for seamless quiz navigation.
+
+- Responsive Design: Enjoy the same great experience on both desktop and mobile devices.
 
 
 ## Installation
@@ -81,6 +91,12 @@ Start the server
 ```bash
   python manage.py runserver
 ```
+
+# Open Your Browser:
+Visit http://localhost:8000 to start exploring the QuizMaster!
+
+# Contributing:
+We welcome contributions from the community! If you have ideas for new features, improvements, or find any bugs, please open an issue or submit a pull request.
 
 # Setting the Settings.py file for saving the `Profile Image`
 Setting the static file 
