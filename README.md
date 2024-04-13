@@ -43,7 +43,7 @@ Install my-project with `git clone `
    create a folder in the name you needed `your folder name`
 ```
 ```bash
-  git clone https:
+  git clone https://github.com/SHYAM-001/QUIZ-TIME.git
 ```
     
 ## Environment Variables
