@@ -1,0 +1,7 @@
+myVenv/
+myVenv
+.env
+env/
+.myVenv
+.myVenv/
+/myVenv/
