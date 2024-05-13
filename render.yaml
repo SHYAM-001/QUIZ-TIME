@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: capstone-quiz-app
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn capstone.wsgi -b 0.0.0.0:$PORT
+    env:
+      - key: DJANGO_SETTINGS_MODULE
+        value: "capstone.settings"
+    healthCheckPath: /health-check
