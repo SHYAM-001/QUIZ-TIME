@@ -32,7 +32,12 @@ def profile_image(request,user_id):
         return redirect('profile', user_id=user.id)
     return HttpResponse("Profile image updated successfully")
 def profile(request,user_id):
-    user = get_object_or_404(User, id=user_id)
+    
+    if (request.user.id == user_id):
+        user = get_object_or_404(User, id=user_id)
+    else:
+        return redirect('profile',user_id=request.user.id)
+    
     profile_image = get_object_or_404(ProfileImage, user=user)
     image = ProfileImage.objects.get(user=request.user)
     
