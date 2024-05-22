@@ -12,6 +12,3 @@ python manage.py makemigrations
 
 # Apply any outstanding database migrations
 python manage.py migrate
-
-# To create a super user 
-python manage.py createsuperuser
