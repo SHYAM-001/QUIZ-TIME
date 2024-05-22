@@ -3,6 +3,7 @@ services:
     plan: free
     name: Quiz Time
     runtime: python
+    rootDir: capstone
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn capstone.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
